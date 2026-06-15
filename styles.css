@@ -6,6 +6,29 @@
 /* --- Fonts ------------------------------------------------ */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Sora:wght@400;600;700&display=swap");
 
+/* --- Smooth page-to-page navigation -----------------------
+   Cross-document View Transitions: when you click a link to another
+   page in this portfolio, the browser cross-fades between the two
+   pages instead of showing a hard white/colored flash. Supported in
+   Chromium + Safari 18.2+; older browsers just navigate normally
+   (no regression). The sticky header is given a stable transition
+   name so it stays put instead of fading with the rest. */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: cubic-bezier(.16,.84,.3,1);
+}
+
+.page { view-transition-name: site-header; }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+
 /* --- Tokens ----------------------------------------------- */
 :root {
   /* Palette */
@@ -156,6 +179,19 @@ p { margin: 0; }
   background: var(--bg-soft);
 }
 
+/* Explicit "back to home" link — always visible in the sticky header so
+   users never need the browser back button or to scroll to the footer. */
+.nav__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.nav__home svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
 /* Sticky header w/ blur + subtle border that intensifies on scroll */
 .page {
   position: sticky;
@@ -288,9 +324,9 @@ p { margin: 0; }
 /* --- Hero (home) ------------------------------------------ */
 .hero-home {
   max-width: var(--container-w);
-  margin: 32px auto 56px;
+  margin: 40px auto 44px;
   padding: 24px 24px 0;
-  text-align: center;
+  text-align: left;
 }
 
 .pill-status {
@@ -344,9 +380,9 @@ p { margin: 0; }
 .hero-home__links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
-  margin-top: 24px;
+  margin-top: 28px;
 }
 
 .chip {
@@ -360,9 +396,91 @@ p { margin: 0; }
   color: var(--ink);
   font-weight: 400;
   line-height: 1.44;
+  white-space: nowrap;
   transition: background .15s ease;
 }
 .chip:hover { background: rgb(235, 238, 244); }
+
+/* --- Profil (bloc gris #F6F8FA, specs Figma) -------------- */
+.profile-block {
+  max-width: var(--container-w);
+  margin: 32px auto 0;
+  padding: clamp(36px, 5vw, 72px);
+  background: #F6F8FA;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 4vw, 44px);
+  text-align: left;
+}
+.profile-block__head {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+}
+.profile-block__title {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.profile-block__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(48px, 7vw, 76px);
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0;
+}
+.profile-block__role {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.3;
+  margin: 0;
+  color: var(--ink-80);
+}
+.profile-block__role mark {
+  background: var(--highlight);
+  color: var(--ink);
+  padding: 0.06em 0.22em;
+  border-radius: 4px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.profile-block .hero-home__links { margin-top: 0; }
+/* On the grey block, soft-grey pills blend in — give chips & tags a white
+   fill so they read as pills (matches the Figma profile block). */
+.profile-block .chip,
+.profile-block__skills .tag { background: #EBEEF4; }
+.profile-block .chip:hover { background: rgb(225, 229, 238); }
+.profile-block__title .pill-status { align-self: flex-start; background: #EBEEF4; }
+.profile-block__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 64px);
+  padding-top: clamp(28px, 3vw, 40px);
+  border-top: 1px solid var(--ink-10);
+}
+.profile-block__words h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+}
+.profile-block__words p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-80);
+  max-width: 46ch;
+}
+.profile-block__skills .tag-row:last-child { margin-bottom: 0; }
+@media (max-width: 880px) {
+  .profile-block__cols { grid-template-columns: 1fr; gap: 32px; }
+}
 
 /* --- "En quelques mots" intro block ----------------------- */
 .intro {
@@ -395,6 +513,61 @@ p { margin: 0; }
 
 .intro p { margin: 0 0 12px; }
 .intro p:last-child { margin-bottom: 0; }
+
+/* --- "Comment je travaille" (fond blanc, cards) ----------- */
+.howiwork-section {
+  max-width: var(--container-w);
+  margin: 56px auto 0;
+  padding: 0;
+}
+.howiwork {
+  margin: 0;
+  padding: 0;
+}
+.howiwork__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-50);
+  margin-bottom: 16px;
+}
+.howiwork__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.hw-card {
+  background: #F6F8FA;
+  border-radius: 8px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hw-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.15;
+  margin: 0;
+}
+.hw-card__text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+}
+@media (max-width: 880px) {
+  .howiwork__list { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+@media (max-width: 520px) {
+  .howiwork__list { grid-template-columns: 1fr; }
+}
 
 .intro__meta-label {
   font-size: 12px;
@@ -476,7 +649,11 @@ body[data-theme="green"] .persona__meta .tag {
 .projects {
   max-width: var(--container-w);
   margin: 56px auto 0;
-  padding: 24px;
+  padding: 0 0 48px;
+}
+@media (max-width: 880px) {
+  .howiwork-section,
+  .projects { padding-left: 16px; padding-right: 16px; }
 }
 
 .projects__header { margin-bottom: 32px; }
@@ -695,21 +872,28 @@ body[data-theme="green"] .persona__meta .tag {
 
 .project-hero__image {
   position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 4px solid rgb(246, 248, 250);
-  background: rgba(255,255,255,0.10);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.20);
   justify-self: end;
-  max-width: 100%;
+  width: 100%;
+  max-width: none;
+  margin-right: -28px;
+  background: transparent;
+  padding: 0;
 }
 
 .project-hero__image img {
   display: block;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  object-fit: contain;
+  aspect-ratio: 381 / 214;
+  object-fit: cover;
+  object-position: left top;
+  border-radius: 8px;
+  border: 4px solid rgba(255,255,255,0.5);
+}
+
+@media (max-width: 880px) {
+  .project-hero__image { margin-right: 0; }
+  .project-hero__image img { aspect-ratio: auto; }
 }
 
 /* Theme variants for hero */
@@ -1575,11 +1759,12 @@ body[data-theme="green"]  .step--accent { background: var(--green-soft);  }
 .reveal--right    { transform: translateX(24px); }
 .reveal--right.is-in  { transform: none; }
 
-/* Hero entry: animate on load, no scroll trigger */
+/* Hero entry: a gentle slide on load (no scroll trigger). Content stays
+   visible the whole time — we deliberately do NOT fade from opacity:0 so
+   the hero is never blank during a cross-page View Transition. */
 .hero-home > * {
-  opacity: 0;
-  transform: translateY(16px);
-  animation: rise 1100ms cubic-bezier(.16,.84,.3,1) forwards;
+  transform: translateY(14px);
+  animation: rise 900ms cubic-bezier(.16,.84,.3,1) forwards;
 }
 .hero-home > *:nth-child(1) { animation-delay: 120ms; }
 .hero-home > *:nth-child(2) { animation-delay: 220ms; }
@@ -1588,9 +1773,8 @@ body[data-theme="green"]  .step--accent { background: var(--green-soft);  }
 .hero-home > *:nth-child(5) { animation-delay: 520ms; }
 
 .project-hero > .project-hero__grid > * {
-  opacity: 0;
-  transform: translateY(16px);
-  animation: rise 1100ms cubic-bezier(.16,.84,.3,1) forwards;
+  transform: translateY(14px);
+  animation: rise 900ms cubic-bezier(.16,.84,.3,1) forwards;
 }
 .project-hero > .project-hero__grid > *:nth-child(1) { animation-delay: 140ms; }
 .project-hero > .project-hero__grid > *:nth-child(2) { animation-delay: 320ms; }
@@ -1601,7 +1785,8 @@ body[data-theme="green"]  .step--accent { background: var(--green-soft);  }
 }
 
 @keyframes rise {
-  to { opacity: 1; transform: none; }
+  from { transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
 }
 
 @keyframes dot-pulse {
@@ -1689,5 +1874,82 @@ body[data-theme="green"]  .step--accent { background: var(--green-soft);  }
 .tweak--left-captions .ateliers-repo-line figcaption,
 .tweak--left-captions .livrables-msc figcaption {
   text-align: left;
+}
+
+/* --- Lightbox --------------------------------------------- */
+/* Zoomable images get a subtle cursor cue; no shadow, no animation. */
+.is-zoomable { cursor: zoom-in; }
+
+body.lightbox-open { overflow: hidden; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 88px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.lightbox[hidden] { display: none; }
+
+.lightbox__figure {
+  margin: 0;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.lightbox__img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 230px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: default;
+}
+
+.lightbox__caption {
+  margin: 0;
+  color: var(--ink-60);
+  font-size: 13px;
+  text-align: center;
+  max-width: 60ch;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  padding: 0;
+}
+
+.lightbox__close:hover { background: var(--bg-soft); }
+.lightbox__close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+@media (max-width: 600px) {
+  .lightbox { padding: 24px; }
+  .lightbox__img { max-height: calc(100vh - 110px); }
 }
 

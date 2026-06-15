@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inès Rondeau — UX et UI / Product Designer confirmée</title>
-  <meta name="description" content="Portfolio d'Inès Rondeau, Product Designer confirmée, 7 ans d'expérience. Études de cas Recherche, cadrage, conception et mesure d'usage chez TF1.">
+  <title>Inès Rondeau — UX et UI / Product Designer Senior</title>
+  <meta name="description" content="Portfolio d'Inès Rondeau, Product Designer Senior, 7 ans d'expérience. Études de cas Recherche, cadrage, conception et mesure d'usage chez TF1.">
   <link rel="stylesheet" href="styles.css">
   <script defer src="reveal.js"></script>
 </head>
-<body data-screen-label="01 Home">
+<body>
 
   <header class="page">
     <nav class="nav" aria-label="Principale">
@@ -32,67 +32,81 @@
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero-home" aria-labelledby="hero-title">
-      <span class="pill-status">Disponible à partir d'août</span>
-      <h1 id="hero-title" class="hero-home__title">Inès Rondeau</h1>
-      <p class="hero-home__subtitle">
-        <span class="mark">UX et UI / Product Designer confirmée</span> — 7 ans d'expérience
-      </p>
+    <!-- PROFIL (bloc gris #F6F8FA) -->
+    <section class="profile-block" aria-labelledby="hero-title">
+      <div class="profile-block__head">
+        <div class="profile-block__title">
+          <span class="pill-status">Disponible à partir d'août</span>
+          <h1 id="hero-title" class="profile-block__name">Inès Rondeau</h1>
+          <p class="profile-block__role"><mark>UX et UI / Product Designer Senior</mark> — 7 ans d'expérience</p>
+        </div>
+        <div class="hero-home__links" role="list">
+          <a class="chip" href="mailto:rondeau.id@gmail.com" role="listitem">rondeau.id@gmail.com</a>
+          <a class="chip" href="tel:+33783822428" role="listitem">(+33) 07 83 82 24 28</a>
+          <a class="chip" href="https://www.linkedin.com/in/in%C3%A8s-rondeau-173500bb/" target="_blank" rel="noopener" role="listitem">LinkedIn</a>
+          <a class="chip" href="cv-ines-rondeau.html" role="listitem">Télécharger le CV</a>
+        </div>
+      </div>
 
-      <div class="hero-home__links" role="list">
-        <a class="chip" href="mailto:rondeau.id@gmail.com" role="listitem">rondeau.id@gmail.com</a>
-        <a class="chip" href="tel:+33783822428" role="listitem">(+33) 07 83 82 24 28</a>
-        <a class="chip" href="https://www.linkedin.com/in/in%C3%A8s-rondeau-173500bb/" target="_blank" rel="noopener" role="listitem">LinkedIn</a>
-        <a class="chip" href="cv-ines-rondeau.html" role="listitem">Télécharger le CV</a>
+      <div class="profile-block__cols">
+        <div class="profile-block__words">
+          <div class="intro__eyebrow">En quelques mots</div>
+          <h2>Du terrain à la solution, sans perdre l'humain.</h2>
+          <p>Pragmatique j'ajuste ma pratique afin de répondre aux attentes de l'organisation accompagnée, en m'appuyant sur la réalité terrain.</p>
+        </div>
+
+        <aside class="profile-block__skills" aria-labelledby="skills">
+          <h3 id="skills" class="visually-hidden" style="position:absolute;left:-9999px">Compétences</h3>
+
+          <div class="intro__meta-label">Outils de travail UX et facilitation d'ateliers</div>
+          <div class="tag-row">
+            <span class="tag">Figma</span>
+            <span class="tag">Miro</span>
+            <span class="tag">Confluence</span>
+            <span class="tag">Azure DevOps</span>
+            <span class="tag">Accessibilité</span>
+            <span class="tag">Design system</span>
+            <span class="tag">Répertoire de données</span>
+            <span class="tag">Amélioration continue de produit</span>
+            <span class="tag">Pair design</span>
+          </div>
+
+          <div class="intro__meta-label">Outils IA</div>
+          <div class="tag-row">
+            <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Figma Make</span>
+            <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Miro AI</span>
+            <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Rovo</span>
+            <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Copilot</span>
+            <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Gemini</span>
+            <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Claude Design</span>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <!-- EN QUELQUES MOTS -->
-    <section class="intro reveal" aria-labelledby="intro-title">
-      <div>
-        <div class="intro__eyebrow">En quelques mots</div>
-        <h2 id="intro-title">Du terrain à la solution, sans perdre l'humain.</h2>
-        <p>
-          J'interviens sur tout le cycle produit en adaptant ma démarche aux réalités du terrain et
-          aux objectifs d'entreprise. Consciente que la méthode UX n'est pas un processus linéaire,
-          j'ajuste ma pratique face aux découvertes — réorientations, contraintes — avec agilité.
-          Convaincue que la collaboration est la clé, je m'appuie sur l'intelligence collective
-          et ma capacité à me remettre en question pour transformer chaque difficulté en solution.
-        </p>
-        <p>
-          Je m'appuie sur les outils IA intégrés à mes environnements de travail — Figma, Miro,
-          Confluence — et maîtrise la rédaction de requêtes pour trouver des solutions rapidement, automatiser
-          les tâches répétitives et gagner en productivité au quotidien.
-        </p>
+    <!-- COMMENT JE TRAVAILLE (fond blanc) -->
+    <section class="howiwork-section reveal">
+      <div class="howiwork">
+        <div class="howiwork__label">Comment je travaille</div>
+        <ul class="howiwork__list">
+          <li class="hw-card">
+            <h3 class="hw-card__title">Équipe</h3>
+            <p class="hw-card__text">Autonome ou en binôme selon les projets, toujours au sein d'équipes pluridisciplinaires —Product manager, Product Owner, développeurs, métiers, sponsors.</p>
+          </li>
+          <li class="hw-card">
+            <h3 class="hw-card__title">Posture client</h3>
+            <p class="hw-card__text">J'adapte ma démarche aux contraintes terrain et aux objectifs business, quelle que soit la complexité du contexte.</p>
+          </li>
+          <li class="hw-card">
+            <h3 class="hw-card__title">Animation</h3>
+            <p class="hw-card__text">J'anime ou co-anime les ateliers nécessaires à chaque étape du cycle produit : Carte d'expérience, carte d'empathie avec les équipes techniques, produit et métier.</p>
+          </li>
+          <li class="hw-card">
+            <h3 class="hw-card__title">Gestion ambiguïté</h3>
+            <p class="hw-card__text">Je m'appuie sur des faits réels établis lors de la phase de recherche utilisateur — tests, interviews, mesures d'usage — afin d'argumenter mes prises de position et d'alimenter les arbitrages du Product Owner et des parties prenantes.</p>
+          </li>
+        </ul>
       </div>
-
-      <aside aria-labelledby="skills">
-        <h3 id="skills" class="visually-hidden" style="position:absolute;left:-9999px">Compétences</h3>
-
-        <div class="intro__meta-label">Outils de travail UX et facilitation d'ateliers</div>
-        <div class="tag-row">
-          <span class="tag">Figma</span>
-          <span class="tag">Miro</span>
-          <span class="tag">Confluence</span>
-          <span class="tag">Azure DevOps</span>
-          <span class="tag">Accessibilité</span>
-          <span class="tag">Design system</span>
-          <span class="tag">Répertoire de données</span>
-          <span class="tag">Amélioration continue de produit</span>
-          <span class="tag">Pair design</span>
-        </div>
-
-        <div class="intro__meta-label">Outils IA</div>
-        <div class="tag-row">
-          <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Figma Make</span>
-          <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Miro AI</span>
-          <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Rovo</span>
-          <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Copilot</span>
-          <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Gemini</span>
-          <span class="tag tag--ai" style="background-color: rgb(254, 255, 227)">Claude Design</span>
-        </div>
-      </aside>
     </section>
 
     <!-- PROJETS -->
@@ -198,7 +212,7 @@
         <div>
           <h2 class="footer__title">On se parle ?</h2>
           <p class="footer__lead">
-            Je suis ouverte aux opportunités à Montréal dès août — produit, design system,
+            Ouverte aux opportunités à Montréal dès août — et en région si télétravail possible — produit, design system,
             recherche utilisateur, IA appliquée au design.
           </p>
         </div>
