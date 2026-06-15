@@ -1,0 +1,13 @@
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Fichiers de travail
+uploads/
+screenshots/
+*.log
+*(hors-ligne).html
+.thumbnail

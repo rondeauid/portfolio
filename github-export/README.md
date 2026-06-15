@@ -1,6 +1,7 @@
 # Portfolio — Inès Rondeau
 
-Portfolio UX / UI · Product Designer. Site statique en HTML / CSS, sans dépendances ni build.
+Portfolio UX / UI · Product Designer Senior.
+Site statique en HTML / CSS / JS vanilla — aucune dépendance, aucun build.
 
 ## Structure
 
@@ -27,6 +28,10 @@ python3 -m http.server
 # puis ouvrir http://localhost:8000
 ```
 
-## Déploiement
+## Déploiement (GitHub Pages)
 
-Compatible GitHub Pages : activer Pages sur la branche `main` (dossier racine).
+1. Pousser ces fichiers à la racine d'un dépôt GitHub.
+2. **Settings → Pages → Build and deployment**, source : `Deploy from a branch`.
+3. Brancher sur `main`, dossier `/ (root)`, puis enregistrer.
+
+Le site sera publié sur `https://<utilisateur>.github.io/<dépôt>/`.
