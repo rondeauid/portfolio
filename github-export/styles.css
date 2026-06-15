@@ -124,6 +124,7 @@ p { margin: 0; }
 @media (max-width: 880px) {
   .page { padding: 16px 16px 0; }
   .container { padding: 0 16px; }
+  .profile-block { padding: 0 16px; }
 }
 
 /* --- Top navigation --------------------------------------- */
@@ -405,12 +406,11 @@ p { margin: 0; }
 .profile-block {
   max-width: var(--container-w);
   margin: 32px auto 0;
-  padding: clamp(36px, 5vw, 72px);
-  background: #F6F8FA;
-  border-radius: var(--radius-lg);
+  padding: 0 24px;
+  background: transparent;
   display: flex;
   flex-direction: column;
-  gap: clamp(32px, 4vw, 44px);
+  gap: clamp(28px, 3.5vw, 40px);
   text-align: left;
 }
 .profile-block__head {
