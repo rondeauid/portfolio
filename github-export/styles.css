@@ -164,7 +164,9 @@ p { margin: 0; }
   cursor: pointer;
   transition: background .15s ease;
 }
-.nav__toggle:hover { background: var(--bg-soft); }
+@media (hover: hover) {
+  .nav__toggle:hover { background: var(--bg-soft); }
+}
 .nav__toggle span {
   display: block;
   width: 20px;
