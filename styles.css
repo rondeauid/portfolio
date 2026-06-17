@@ -843,6 +843,13 @@ body[data-theme="green"] .persona__meta .tag {
   object-position: left center;
 }
 
+/* Jade + : la capture est plus haute que le cadre — ancrer en haut pour
+   ne pas couper le header de l'app. */
+.card[href="projet-2-jade.html"] .card__media img,
+.card[href="projet-1-portail-info.html"] .card__media img {
+  object-position: left top;
+}
+
 .card__body {
   padding: 24px;
   display: flex;
@@ -1400,6 +1407,211 @@ body[data-theme="green"]  .glance .glance__eyebrow { background: var(--green-sof
   height: auto;
   object-fit: contain;
   background: var(--bg-card);
+}
+
+/* =========================================================
+   Parcours slider — interactive 5-step user journey carousel.
+   A scroll-snap track (native overflow-x on any width) with prev/next
+   arrows, progress dots, a peek of the neighbouring screens, and a
+   discreet auto-advance that pauses on interaction. Screens use a
+   pronounced rounded-2xl frame per the brief.
+   ========================================================= */
+.parcours-slider { position: relative; }
+
+/* Screen-reader-only utility (used by the slider's live region). */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.parcours-slider__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.parcours-slider__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  color: #0C0142;
+  margin: 0;
+  max-width: 46ch;
+}
+.parcours-slider__counter {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink-50);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.parcours-slider__counter b { color: var(--pink); }
+
+/* Viewport masks the peek edges softly so screens fade in from the sides. */
+.parcours-viewport { position: relative; }
+
+.parcours-track {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-inline: 0;
+  padding: 8px 4px 20px;
+  /* hide scrollbar — navigation is via arrows/dots */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.parcours-track::-webkit-scrollbar { display: none; }
+
+.parcours-slide {
+  flex: 0 0 78%;
+  scroll-snap-align: center;
+  margin: 0;
+  opacity: 0.42;
+  transform: scale(0.95);
+  transition: transform 0.45s cubic-bezier(.16,.84,.3,1);
+}
+.parcours-slide[data-active] { opacity: 1; transform: scale(1); }
+
+.parcours-slide__frame {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  box-shadow: none;
+  transition: box-shadow 0.45s cubic-bezier(.16,.84,.3,1);
+}
+.parcours-slide[data-active] .parcours-slide__frame {
+  box-shadow: 0 3px 10px -10px rgba(12,1,66,.18);
+}
+.parcours-slide__frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top left;
+  background: var(--bg-card);
+}
+/* Maquettes Jade : captures plein écran affichées à leur ratio natif (16/10.4)
+   pour ne rien rogner — appliqué uniquement à ce slider. */
+.parcours-slider--maquettes .parcours-slide__frame img {
+  aspect-ratio: 1920 / 1248;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.parcours-slide figcaption {
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+.parcours-slide__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+.parcours-slide[data-active] .parcours-slide__step { background: #0C0142; }
+
+/* Controls row — progress dots, centred (arrows now flank the viewport) */
+.parcours-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+}
+.parcours-arrow {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: #F6F8FA;
+  color: #0C0142;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease,
+              border-color 0.2s ease, transform 0.2s ease;
+}
+.parcours-arrow svg { width: 20px; height: 20px; }
+.parcours-arrow:hover { background: #0C0142; color: var(--white); border-color: #0C0142; }
+.parcours-arrow:active { transform: scale(0.94); }
+.parcours-arrow:focus-visible { outline: 2px solid #0C0142; outline-offset: 2px; }
+
+/* Flanking arrows — pinned to the slider edges, vertically centred over
+   the active screen. Sit above the screens with a clear hit target. */
+.parcours-arrow--prev,
+.parcours-arrow--next {
+  position: absolute;
+  top: 8px;
+  bottom: 55px;
+  margin-block: auto;
+  z-index: 3;
+  box-shadow: 0 6px 18px -8px rgba(12,1,66,.35);
+}
+.parcours-arrow--prev { left: 0; }
+.parcours-arrow--next { right: 0; }
+
+.parcours-dots {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+}
+.parcours-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink-10);
+  cursor: pointer;
+  transition: width 0.3s cubic-bezier(.16,.84,.3,1), background 0.3s ease;
+}
+.parcours-dot[aria-current="true"] { width: 28px; background: #0C0142; }
+.parcours-dot:focus-visible { outline: 2px solid #0C0142; outline-offset: 2px; }
+
+.parcours-legend {
+  margin: 18px 0 0;
+  font-size: 12px;
+  color: var(--ink-60);
+}
+
+@media (max-width: 860px) {
+  .parcours-slide { flex-basis: 86%; }
+  .parcours-slide figcaption { font-size: 14px; }
+}
+@media (max-width: 560px) {
+  .parcours-slide { flex-basis: 90%; }
+  .parcours-arrow--prev { left: 0; }
+  .parcours-arrow--next { right: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .parcours-track { scroll-behavior: auto; }
+  .parcours-slide { transition: none; }
 }
 
 /* Parcours variant — 5 sequential screens shown side-by-side as a flow.
@@ -2063,8 +2275,38 @@ body.lightbox-open { overflow: hidden; }
 .lightbox__close:hover { background: var(--bg-soft); }
 .lightbox__close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
+/* Prev / next navigation within a gallery group */
+.lightbox__nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: #F6F8FA;
+  color: #0C0142;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 6px 18px -8px rgba(12,1,66,.35);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease;
+}
+.lightbox__nav svg { width: 24px; height: 24px; }
+.lightbox__nav--prev { left: 24px; }
+.lightbox__nav--next { right: 24px; }
+.lightbox__nav:hover { background: #0C0142; color: #ffffff; }
+.lightbox__nav:active { transform: translateY(-50%) scale(0.94); }
+.lightbox__nav:focus-visible { outline: 2px solid #0C0142; outline-offset: 2px; }
+.lightbox__nav[hidden] { display: none; }
+
 @media (max-width: 600px) {
   .lightbox { padding: 24px; }
   .lightbox__img { max-height: calc(100vh - 110px); }
+  .lightbox__nav { width: 44px; height: 44px; }
+  .lightbox__nav--prev { left: 10px; }
+  .lightbox__nav--next { right: 10px; }
 }
 

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles.css">
   <script defer src="reveal.js"></script>
   <script defer src="lightbox.js"></script>
+  <script defer src="parcours-slider.js"></script>
 </head>
 <body data-theme="yellow">
 
@@ -360,42 +361,59 @@
       </div>
     </section>
 
-    <!-- =================== MAQUETTES =============================== -->
-    <section class="section reveal" style="grid-template-columns: 1fr;">
-      <div>
-        <div class="glance__eyebrow" style="margin-bottom:16px">Maquettes : plannings équipe et personnel</div>
-
-        <div class="maquettes-stage">
-          <!-- Desktop screens — primary -->
-          <div class="gallery gallery--3 maquettes--desktop reveal-stagger">
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/jade-equipe-1.webp" alt="Planning d'équipe — vue JT 13h, semaine du 06 au 12 octobre">
-              <figcaption>Desktop — Planning d'équipe</figcaption>
-            </figure>
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/jade-equipe-2.webp" alt="Planning d'équipe — modale Détails de la journée">
-              <figcaption>Desktop — Détails de la journée</figcaption>
-            </figure>
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/jade-personnel.webp" alt="Planning personnel — forfait travail et compteurs">
-              <figcaption>Desktop — Planning personnel</figcaption>
-            </figure>
-          </div>
-
-          <!-- Mobile screens — secondary -->
-          <div class="maquettes--mobile reveal-stagger">
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/jade-mobile-1.png" alt="Mobile — Planning personnel, vue semaine">
-              <figcaption>Mobile — Planning personnel</figcaption>
-            </figure>
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/jade-mobile-2.png" alt="Mobile — Planning personnel avec sélecteur calendrier déployé">
-              <figcaption>Mobile — Sélecteur calendrier</figcaption>
-            </figure>
-          </div>
-
-          <p class="maquettes__legend">Desktop et mobile</p>
+    <!-- =================== MAQUETTES — SLIDER ===================== -->
+    <section class="section reveal" style="grid-template-columns: 1fr;" aria-labelledby="maquettes-title">
+      <div class="parcours-slider parcours-slider--maquettes" role="group" aria-roledescription="carrousel" aria-label="Maquettes : plannings équipe et personnel">
+        <div class="parcours-slider__head">
+          <h2 class="parcours-slider__title" id="maquettes-title">Parcours planning équipe et personnel pour les collaborateurs planifiés</h2>
+          <div class="parcours-slider__counter" aria-hidden="true"><b data-counter="current" style="color: rgb(12, 1, 66)">01</b> / 04</div>
         </div>
+
+        <div class="parcours-viewport">
+          <button type="button" class="parcours-arrow parcours-arrow--prev" data-dir="prev" aria-controls="maquettes-track" aria-label="Écran précédent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="parcours-track" id="maquettes-track">
+            <figure class="parcours-slide" data-active role="group" aria-roledescription="diapositive" aria-label="Écran 1 sur 4">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/jade-equipe-01.webp" alt="Planning d'équipe — vue JT 13h, semaine du 06 au 12 octobre">
+              </span>
+              <figcaption>Planning d'équipe</figcaption>
+            </figure>
+            <figure class="parcours-slide" role="group" aria-roledescription="diapositive" aria-label="Écran 2 sur 4">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/jade-equipe-popin-02.webp" alt="Planning d'équipe — modale Détails de la journée">
+              </span>
+              <figcaption>Détails de la journée</figcaption>
+            </figure>
+            <figure class="parcours-slide" role="group" aria-roledescription="diapositive" aria-label="Écran 3 sur 4">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/jade-personnel-03.webp" alt="Planning personnel — vue semaine">
+              </span>
+              <figcaption>Planning personnel</figcaption>
+            </figure>
+            <figure class="parcours-slide" role="group" aria-roledescription="diapositive" aria-label="Écran 4 sur 4">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/jade-personnel-forfait-04.webp" alt="Planning personnel — forfaits et compteurs de congés">
+              </span>
+              <figcaption>Planning personnel — Forfaits</figcaption>
+            </figure>
+          </div>
+          <button type="button" class="parcours-arrow parcours-arrow--next" data-dir="next" aria-controls="maquettes-track" aria-label="Écran suivant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <div class="parcours-controls">
+          <div class="parcours-dots" role="group" aria-label="Choisir un écran">
+            <button type="button" class="parcours-dot" aria-controls="maquettes-track" aria-current="true"  aria-label="Aller à l'écran 1 — Planning d'équipe"></button>
+            <button type="button" class="parcours-dot" aria-controls="maquettes-track" aria-current="false" aria-label="Aller à l'écran 2 — Détails de la journée"></button>
+            <button type="button" class="parcours-dot" aria-controls="maquettes-track" aria-current="false" aria-label="Aller à l'écran 3 — Planning personnel"></button>
+            <button type="button" class="parcours-dot" aria-controls="maquettes-track" aria-current="false" aria-label="Aller à l'écran 4 — Planning personnel, forfaits"></button>
+          </div>
+        </div>
+        <p class="parcours-live visually-hidden" aria-live="polite"></p>
+
       </div>
     </section>
 

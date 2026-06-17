@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles.css">
   <script defer src="reveal.js"></script>
   <script defer src="lightbox.js"></script>
+  <script defer src="parcours-slider.js"></script>
 </head>
 <body data-theme="orange">
 
@@ -18,6 +19,10 @@
         <span></span><span></span><span></span>
       </button>
       <div class="nav__links">
+        <a href="index.html" class="nav__home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Accueil
+        </a>
         <span class="nav__group">
           <button type="button" class="nav__trigger" aria-haspopup="true" aria-expanded="false" aria-current="page">
             Projets
@@ -359,30 +364,65 @@
     </section>
 
     <!-- =================== MAQUETTES — PARCOURS ==================== -->
-    <section class="section reveal" style="grid-template-columns: 1fr;">
-      <div>
-        <div class="glance__eyebrow" style="margin-bottom:16px">PARCOURS DOCUMENTALISTES RECHERCHE MÉDIA ET EXPORT VERS DALET</div>
-        <div class="maquettes-stage">
-          <div class="gallery gallery--2 maquettes--desktop maquettes--nocrop reveal-stagger">
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/parcours-1-recherche.webp" alt="Étape 1 — Recherche d'un média («Election New York»)">
-              <figcaption style="text-align: left">01 — Recherche d'un média</figcaption>
+    <section class="section reveal" style="grid-template-columns: 1fr;" aria-labelledby="parcours-title">
+      <div class="parcours-slider" role="group" aria-roledescription="carrousel" aria-label="Parcours journalistes : recherche et export vers Dalet">
+        <div class="parcours-slider__head">
+          <h2 class="parcours-slider__title" id="parcours-title">Parcours journalistes de la recherche d'un média, de son export jusqu'à sa consultation</h2>
+          <div class="parcours-slider__counter" aria-hidden="true"><b data-counter="current" style="color: rgb(12, 1, 66)">01</b> / 05</div>
+        </div>
+
+        <div class="parcours-viewport">
+          <button type="button" class="parcours-arrow parcours-arrow--prev" data-dir="prev" aria-controls="parcours-track" aria-label="Écran précédent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="parcours-track" id="parcours-track">
+            <figure class="parcours-slide" data-active role="group" aria-roledescription="diapositive" aria-label="Étape 1 sur 5">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/parcours-01-recherche.webp" alt="Étape 01 — Recherche média : tableau de bord Réseaux sociaux avec colonnes de vérification">
+              </span>
+              <figcaption>Recherche média</figcaption>
             </figure>
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/parcours-2-consultation.webp" alt="Étape 2 — Consultation des résultats et de la fiche du média">
-              <figcaption style="text-align: left">02 — Consultation du média</figcaption>
+            <figure class="parcours-slide" role="group" aria-roledescription="diapositive" aria-label="Étape 2 sur 5">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/parcours-02-export.webp" alt="Étape 02 — Export vers Dalet TF1 : sélection de la destination dans la fenêtre d'export">
+              </span>
+              <figcaption>Export dalet TF1</figcaption>
             </figure>
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/parcours-4-export.webp" alt="Étape 3 — Export du média vers Dalet TF1">
-              <figcaption style="text-align: left">03 — Export du média</figcaption>
+            <figure class="parcours-slide" role="group" aria-roledescription="diapositive" aria-label="Étape 3 sur 5">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/parcours-03-confirmation.webp" alt="Étape 03 — Confirmation : message de confirmation d'envoi de la demande d'export">
+              </span>
+              <figcaption>Confirmation</figcaption>
             </figure>
-            <figure>
-              <img loading="lazy" decoding="async" src="assets/parcours-5-notif.webp" alt="Étape 4 — Confirmation d'envoi de la demande d'export">
-              <figcaption style="text-align: left">04 — Confirmation d'envoi</figcaption>
+            <figure class="parcours-slide" role="group" aria-roledescription="diapositive" aria-label="Étape 4 sur 5">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/parcours-04-feedback.webp" alt="Étape 04 — Feedback export : panneau « Envois et notifications » avec le suivi des exports">
+              </span>
+              <figcaption>Feedback export</figcaption>
+            </figure>
+            <figure class="parcours-slide" role="group" aria-roledescription="diapositive" aria-label="Étape 5 sur 5">
+              <span class="parcours-slide__frame">
+                <img loading="lazy" decoding="async" src="assets/parcours-05-consultation.webp" alt="Étape 05 — Consultation : fiche détaillée « Informations vidéo » du média vérifié">
+              </span>
+              <figcaption>Consultation</figcaption>
             </figure>
           </div>
-          <p class="maquettes__legend" style="text-align: left">Desktop — parcours en 4 étapes</p>
+          <button type="button" class="parcours-arrow parcours-arrow--next" data-dir="next" aria-controls="parcours-track" aria-label="Écran suivant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
+
+        <div class="parcours-controls">
+          <div class="parcours-dots" role="group" aria-label="Choisir un écran">
+            <button type="button" class="parcours-dot" aria-controls="parcours-track" aria-current="true"  aria-label="Aller à l'étape 1 — Recherche média"></button>
+            <button type="button" class="parcours-dot" aria-controls="parcours-track" aria-current="false" aria-label="Aller à l'étape 2 — Export dalet TF1"></button>
+            <button type="button" class="parcours-dot" aria-controls="parcours-track" aria-current="false" aria-label="Aller à l'étape 3 — Confirmation"></button>
+            <button type="button" class="parcours-dot" aria-controls="parcours-track" aria-current="false" aria-label="Aller à l'étape 4 — Feedback export"></button>
+            <button type="button" class="parcours-dot" aria-controls="parcours-track" aria-current="false" aria-label="Aller à l'étape 5 — Consultation"></button>
+          </div>
+        </div>
+        <p class="parcours-live visually-hidden" aria-live="polite"></p>
+
       </div>
     </section>
 
