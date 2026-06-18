@@ -14,8 +14,8 @@
       --hl:#FCFE73;           /* rgb(252,254,115) surlignage nom   */
       --side:rgba(235,238,244,.4); /* rgb(235,238,244) @40%        */
       --tag:#EBEEF4;          /* rgb(235,238,244) fond tag         */
-      --label:#8680A1;        /* rgb(134,128,161) libellés         */
-      --label-dk:#6C668A;     /* rgb(108,102,138) libellé profil / dates */
+      --label:#6B677F;        /* rgb(107,103,127) libellés (uppercase) */
+      --label-dk:#6B677F;     /* rgb(107,103,127) dates / méta       */
       --line:#E7E6EC;         /* rgb(231,230,236) filets + cartes  */
       --ulys-sub:#0C0142;     /* rgb(12,1,66)                       */
     }
@@ -76,7 +76,7 @@
       box-shadow:0 12px 40px rgba(8,1,42,.16);
       display:flex;
       flex-direction:column;
-      gap:9pt;
+      gap:6pt;
     }
 
     /* ── Header (bandeau jaune pâle) ──────────────────────────── */
@@ -142,6 +142,12 @@
       align-items:center;
       gap:1pt;
     }
+    .head__contact .head__url{
+      font-size:7pt;
+      line-height:12pt;
+      color:#524D6A;
+      text-decoration:underline;
+    }
     .ext{width:7pt;height:7pt;flex:0 0 auto;}
 
     /* ── Body : sidebar + main ────────────────────────────────── */
@@ -166,7 +172,7 @@
       color:var(--label);
       text-transform:uppercase;
     }
-    .label--lc{text-transform:none;}
+    .label--lc{text-transform:uppercase;}
     .block{display:flex;flex-direction:column;gap:7pt;align-items:flex-start;}
 
     .tags{display:flex;flex-wrap:wrap;gap:6pt 4pt;align-items:center;}
@@ -195,11 +201,12 @@
     /* ── Main column ──────────────────────────────────────────── */
     .main{ flex:1; min-width:0; padding-left:4pt; display:flex; flex-direction:column; gap:12pt; }
     .sec{display:flex;flex-direction:column;gap:7pt;}
-    .label--profil{font-size:8pt;color:var(--label-dk);}
+    .label--profil{font-size:8pt;color:var(--label);}
     .label--exp{font-size:8pt;color:var(--label);}
     .profile{font-family:'Open Sans',sans-serif;font-size:8pt;line-height:14pt;color:var(--ink);}
+    .sec--profil{padding:0 8pt;gap:5pt;}
 
-    .exp{display:flex;flex-direction:column;gap:12pt;}
+    .exp{display:flex;flex-direction:column;gap:8pt;}
     .exp__lead{display:flex;flex-direction:column;gap:1pt;}
     .exp__org{font-family:'Sora',sans-serif;font-weight:600;font-size:9pt;line-height:14pt;color:var(--ink);}
     .exp__meta{font-family:'Open Sans',sans-serif;font-size:8pt;line-height:12pt;color:var(--label-dk);}
@@ -209,7 +216,7 @@
       padding:2pt 0 2pt 11pt;
       display:flex;
       flex-direction:column;
-      gap:7pt;
+      gap:6pt;
     }
     .card__head{display:flex;flex-direction:column;gap:2pt;}
     .card__title{font-family:'Sora',sans-serif;font-weight:600;font-size:8pt;line-height:14pt;color:var(--ink);}
@@ -219,19 +226,19 @@
     .subsec{display:flex;flex-direction:column;gap:3pt;}
     .subsec__title{font-family:'Sora',sans-serif;font-weight:600;font-size:8pt;line-height:14pt;color:var(--ink);}
 
-    .bullets{list-style:none;display:flex;flex-direction:column;gap:2pt;}
+    .bullets{list-style:none;display:flex;flex-direction:column;gap:2.5pt;}
     .bullets li{
       position:relative;
       font-family:'Open Sans',sans-serif;
       font-size:8pt;
-      line-height:14pt;
+      line-height:12.5pt;
       color:var(--ink);
       padding-left:9pt;
     }
     .bullets li::before{
       content:"";
       position:absolute;
-      left:0;top:5pt;
+      left:0;top:4.3pt;
       width:2.4pt;height:2.4pt;border-radius:50%;
       background:var(--ink);
     }
@@ -276,8 +283,15 @@
             <a href="index.html">Portfolio<svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
             <a href="https://www.linkedin.com/in/in%C3%A8s-rondeau-173500bb/" target="_blank" rel="noopener">LinkedIn<svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
           </span>
+          <a class="head__url" href="https://rondeauid.github.io/portfolio/index.html" target="_blank" rel="noopener">https://rondeauid.github.io/portfolio/index.html</a>
         </address>
       </header>
+
+      <!-- Profil (pleine largeur) -->
+      <section class="sec sec--profil">
+        <div class="label label--profil">profil</div>
+        <p class="profile">En tant que Product Designer, j'accompagne l'ensemble du cycle produit en environnement Agile : recherche utilisateur, conception d'interfaces, tests utilisateurs, mesure d'usage et amélioration continue. Je m'appuie sur les design systems et les outils IA pour gagner en efficacité dans ma pratique.</p>
+      </section>
 
       <div class="body">
 
@@ -297,7 +311,6 @@
               <span class="tag">Design system</span>
               <span class="tag">Accessibilité</span>
               <span class="tag">Mesure d'usage</span>
-              <span class="tag">Accompagnement au changement</span>
             </div>
           </div>
 
@@ -322,7 +335,7 @@
           <hr class="hr">
 
           <div class="block">
-            <div class="label">Formation</div>
+            <div class="label">Formations</div>
             <div class="formation">
               <div class="edu">
                 <span class="deg"><strong>Mastère Expert Stratégie Digitale</strong> (option direction artiste et Expérience utilisateur)<br>IESA Multimédia - Paris</span>
@@ -366,54 +379,56 @@
         <section class="main">
 
           <div class="sec">
-            <div class="label label--profil">profil</div>
-            <p class="profile">J'interviens sur l'ensemble du cycle produit — recherche utilisateur, conception d'interfaces sous Figma, design systems, mesure d'usage et accompagnement au changement. Habituée aux environnements Agile, je travaille en binôme avec les Product Owners, anime des ateliers et intègre les outils IA pour gagner en productivité.</p>
-          </div>
-
-          <hr class="hr">
-
-          <div class="sec">
             <div class="label label--exp">Expérience professionnelle</div>
             <div class="exp">
 
               <div class="exp__lead">
-                <span class="exp__org">Devoteam — Lead Consultant Product Designer</span>
+                <span class="exp__org">Devoteam — Lead Consultant · Product Designer</span>
                 <span class="exp__meta">Novembre 2018 – aujourd'hui · 7 ans</span>
                 <span class="exp__meta">Paris</span>
               </div>
 
               <div class="card">
                 <div class="card__head">
-                  <span class="card__title">Groupe TF1 (Média télévisé) — UX·UI/Product Designer</span>
+                  <span class="card__title">Groupe TF1 (Média télévisuel) — UX·UI/Product Designer</span>
                   <span class="card__date">Octobre 2020 – aujourd'hui · 5 ans</span>
                 </div>
 
                 <div class="subsec">
-                  <span class="subsec__title">Recherche UX et définition</span>
+                  <span class="subsec__title">Recherche UX</span>
                   <ul class="bullets">
                     <li>Identifier les besoins et comprendre les enjeux business pour orienter les choix de conception</li>
-                    <li>Mener et animer la recherche utilisateur (cartes d'expérience, cartes d'empathie, tests utilisateurs, personas) et synthétiser les résultats en insights actionnables</li>
-                    <li>Cadrer les projets en binôme avec les Product Owners (MVP, priorisation, roadmap)</li>
+                    <li>Mener et animer la recherche utilisateur avec les utilisateurs (cartes d'expérience, cartes d'empathie, tests utilisateurs, personas) et synthétiser les résultats en insights actionnables</li>
+                    <li>Cadrer les projets avec les Product Owners (MVP, priorisation, roadmap)</li>
                     <li>Animer des ateliers de tri de cartes avec les utilisateurs pour structurer la hiérarchie de l'information</li>
                     <li>Modéliser les user flows et les scénarios d'utilisation pour simplifier le parcours</li>
                   </ul>
                 </div>
 
                 <div class="subsec">
-                  <span class="subsec__title">Conception et validation</span>
+                  <span class="subsec__title">Conception</span>
                   <ul class="bullets">
                     <li>Concevoir des maquettes basse et haute fidélité (Hi-Fi) basées sur les composants du Design System et conformes aux normes d'accessibilité (WCAG)</li>
                     <li>Créer des prototypes interactifs (Figma, Figma Make)</li>
+                    <li>Partager le travail avec les Product Owners et les développeurs pour évaluer la pertinence et la faisabilité</li>
+                    <li>Mener des tests utilisateurs pour valider les choix de conception</li>
                     <li>Défendre les décisions de conception auprès des chargés de produit et des parties prenantes, en s'appuyant sur les synthèses de tests utilisateurs et la mesure d'usage</li>
                   </ul>
                 </div>
 
                 <div class="subsec">
-                  <span class="subsec__title">Mesure d'usage et accompagnement au changement</span>
+                  <span class="subsec__title">Mesure d'usage</span>
                   <ul class="bullets">
                     <li>Mettre en place des outils de mesure d'usage pour piloter l'amélioration continue</li>
-                    <li>Structurer et déployer un répertoire de recherche utilisateur partagé pour 8 designers, formation incluse</li>
-                    <li>Accompagner les équipes au changement à l'acculturation à la méthode Agile</li>
+                    <li>Structurer et déployer un répertoire de recherche utilisateur partagé pour 8 designers</li>
+                  </ul>
+                </div>
+
+                <div class="subsec">
+                  <span class="subsec__title">Accompagnement au changement</span>
+                  <ul class="bullets">
+                    <li>Contribution à la stratégie d'accompagnement au changement</li>
+                    <li>Production de supports de communication et de formation</li>
                   </ul>
                 </div>
               </div>
