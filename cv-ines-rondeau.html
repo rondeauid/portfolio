@@ -37,7 +37,11 @@
       gap:18px;
       padding:32px 16px 56px;
     }
-    .toolbar{ display:flex; gap:10px; align-items:center; }
+    .toolbar{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center; }
+
+    /* Frame that scales the fixed A4 page down to fit any screen without
+       distorting the layout. Holds the scaled height so there's no gap. */
+    .cv-frame{ width:100%; max-width:595pt; }
     .toolbar .btn{
       font-family:'Sora',sans-serif;
       font-weight:600;
@@ -77,6 +81,7 @@
       display:flex;
       flex-direction:column;
       gap:6pt;
+      transform-origin:top left;
     }
 
     /* ── Header (bandeau jaune pâle) ──────────────────────────── */
@@ -249,7 +254,8 @@
       html,body{background:#fff;}
       .stage{padding:0;gap:0;}
       .toolbar{display:none;}
-      .cv{box-shadow:none;}
+      .cv-frame{max-width:none;width:auto;height:auto !important;}
+      .cv{box-shadow:none;transform:none !important;}
     }
   </style>
 </head>
@@ -264,6 +270,7 @@
     </div>
 
     <!-- ============================ CV A4 ============================ -->
+    <div class="cv-frame">
     <article class="cv" aria-label="CV d'Inès Rondeau">
 
       <!-- Header -->
@@ -452,6 +459,32 @@
         </section>
       </div>
     </article>
+    </div>
   </div>
+
+  <script>
+    /* Scale the fixed A4 CV to fit the available width on any device,
+       preserving the exact layout. Height is set on the frame so there is
+       no empty space below the scaled page. */
+    (function () {
+      var cv = document.querySelector('.cv');
+      var frame = document.querySelector('.cv-frame');
+      if (!cv || !frame) return;
+      function fit() {
+        cv.style.transform = 'none';
+        var natW = cv.offsetWidth;
+        var natH = cv.offsetHeight;
+        var avail = frame.clientWidth;
+        var scale = Math.min(1, avail / natW);
+        cv.style.transform = 'scale(' + scale + ')';
+        frame.style.height = (natH * scale) + 'px';
+      }
+      window.addEventListener('resize', fit);
+      window.addEventListener('orientationchange', fit);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+      window.addEventListener('load', fit);
+      fit();
+    })();
+  </script>
 </body>
 </html>
