@@ -1176,7 +1176,7 @@ body[data-theme="green"]  .glance .glance__eyebrow { background: var(--green-sof
 }
 
 @media (max-width: 880px) {
-  .section { grid-template-columns: 1fr; gap: 24px; padding: 40px 0; margin-top: 24px; }
+  .section { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 40px 0; margin-top: 24px; }
 }
 
 .section--soft {
@@ -1416,7 +1416,7 @@ body[data-theme="green"]  .glance .glance__eyebrow { background: var(--green-sof
    discreet auto-advance that pauses on interaction. Screens use a
    pronounced rounded-2xl frame per the brief.
    ========================================================= */
-.parcours-slider { position: relative; }
+.parcours-slider { position: relative; min-width: 0; }
 
 /* Screen-reader-only utility (used by the slider's live region). */
 .visually-hidden {
