@@ -1600,14 +1600,52 @@ body[data-theme="green"]  .glance .glance__eyebrow { background: var(--green-sof
   color: var(--ink-60);
 }
 
-@media (max-width: 860px) {
-  .parcours-slide { flex-basis: 86%; }
-  .parcours-slide figcaption { font-size: 14px; }
+/* ---- Responsive: fluid screen sizing + arrows that never cover a screen ----
+   Wide viewports show a slightly narrower peek; as the viewport shrinks the
+   active screen grows toward full width, and below the arrow-overlap threshold
+   the arrows leave the screen surface and sit beside it in a flex row so they
+   never obscure the screens. Applies to every project's slider (shared). */
+@media (max-width: 1200px) {
+  .parcours-slide { flex-basis: 80%; }
 }
-@media (max-width: 560px) {
-  .parcours-slide { flex-basis: 90%; }
-  .parcours-arrow--prev { left: 0; }
-  .parcours-arrow--next { right: 0; }
+@media (max-width: 1024px) {
+  .parcours-track { gap: 22px; }
+  .parcours-slide { flex-basis: 84%; }
+}
+@media (max-width: 860px) {
+  .parcours-slide { flex-basis: 88%; }
+  .parcours-slide figcaption { font-size: 14px; }
+  .parcours-arrow { width: 42px; height: 42px; }
+}
+@media (max-width: 680px) {
+  /* Arrows leave the screen surface and sit beside it in a flex row, so the
+     active screen is never hidden behind them. */
+  .parcours-viewport {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .parcours-track {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 16px;
+  }
+  .parcours-slide { flex-basis: 100%; }
+  .parcours-slide figcaption { font-size: 13px; margin-top: 12px; }
+  .parcours-arrow--prev,
+  .parcours-arrow--next {
+    position: static;
+    top: auto;
+    bottom: auto;
+    margin-block: 0;
+    box-shadow: none;
+  }
+}
+@media (max-width: 440px) {
+  .parcours-track { gap: 12px; }
+  .parcours-arrow { width: 38px; height: 38px; }
+  .parcours-arrow svg { width: 18px; height: 18px; }
+  .parcours-viewport { gap: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .parcours-track { scroll-behavior: auto; }
